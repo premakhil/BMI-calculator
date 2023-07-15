@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class widgetTile extends StatelessWidget {
   widgetTile(this.colour);
 
-  Color colour;
+  final Color colour;
 
   @override
   Widget build(BuildContext context) {
