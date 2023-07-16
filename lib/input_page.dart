@@ -44,49 +44,66 @@ class _InputPageState extends State<InputPage> {
                   child: GestureDetector(
                     onTap: (() {
                       setState(() {
-                        selectedGender = Gender.male;
+                        if (selectedGender != Gender.male) {
+                          selectedGender = Gender.male;
+                        } else {
+                          selectedGender = null;
+                        }
                       });
                     }),
                     child: widgetTile(
-                      colour: selectedGender == Gender.male
-                          ? activeColour
-                          : passiveColour,
-                      // colour: passiveColour,
-                      cardChild: iconData(FontAwesomeIcons.mars, 'MALE'),
-                    ),
+                        colour: selectedGender == Gender.male
+                            ? activeColour
+                            : passiveColour,
+                        cardChild: iconData(FontAwesomeIcons.mars, 'MALE'),
+                        paddingValue: selectedGender == Gender.male ? 5.0 : 0),
                   ),
                 ),
                 Expanded(
                   child: GestureDetector(
                     onTap: (() {
                       setState(() {
-                        selectedGender = Gender.female;
+                        if (selectedGender != Gender.female) {
+                          selectedGender = Gender.female;
+                        } else {
+                          selectedGender = null;
+                        }
                       });
                     }),
                     child: widgetTile(
-                      colour: selectedGender == Gender.female
-                          ? activeColour
-                          : passiveColour,
-                      // colour: passiveColour,
-                      cardChild: iconData(FontAwesomeIcons.venus, 'FEMALE'),
-                    ),
+                        colour: selectedGender == Gender.female
+                            ? activeColour
+                            : passiveColour,
+                        cardChild: iconData(
+                          FontAwesomeIcons.venus,
+                          'FEMALE',
+                        ),
+                        paddingValue:
+                            selectedGender == Gender.female ? 5.0 : 0),
                   ),
                 )
               ],
             ),
           ),
           Expanded(
-            child: widgetTile(colour: passiveColour),
+            child: widgetTile(
+              colour: passiveColour,
+              paddingValue: 0,
+            ),
           ),
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: widgetTile(colour: passiveColour),
+                  child: widgetTile(
+                    colour: passiveColour,
+                    paddingValue: 0,
+                  ),
                 ),
                 Expanded(
                   child: widgetTile(
                     colour: passiveColour,
+                    paddingValue: 0,
                   ),
                 ),
               ],
