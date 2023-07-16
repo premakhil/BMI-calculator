@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'widgetTile.dart';
+import 'iconData.dart';
 
 const bottomHeight = 60.0;
 const passiveColour = Color(0xFF25284A);
 const activeColour = Color(0xFF1D1E33);
+
+enum Gender { male, female }
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -13,6 +17,8 @@ class InputPage extends StatefulWidget {
 }
 
 class _InputPageState extends State<InputPage> {
+  Gender? selectedGender;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -23,7 +29,7 @@ class _InputPageState extends State<InputPage> {
           title: Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: Text(
-              'Healthier!',
+              'Healthier',
             ),
           ),
           centerTitle: true,
@@ -35,29 +41,53 @@ class _InputPageState extends State<InputPage> {
             child: Row(
               children: [
                 Expanded(
-                  child: widgetTile(passiveColour),
+                  child: GestureDetector(
+                    onTap: (() {
+                      setState(() {
+                        selectedGender = Gender.male;
+                      });
+                    }),
+                    child: widgetTile(
+                      colour: selectedGender == Gender.male
+                          ? activeColour
+                          : passiveColour,
+                      // colour: passiveColour,
+                      cardChild: iconData(FontAwesomeIcons.mars, 'MALE'),
+                    ),
+                  ),
                 ),
                 Expanded(
-                  child: widgetTile(passiveColour),
+                  child: GestureDetector(
+                    onTap: (() {
+                      setState(() {
+                        selectedGender = Gender.female;
+                      });
+                    }),
+                    child: widgetTile(
+                      colour: selectedGender == Gender.female
+                          ? activeColour
+                          : passiveColour,
+                      // colour: passiveColour,
+                      cardChild: iconData(FontAwesomeIcons.venus, 'FEMALE'),
+                    ),
+                  ),
                 )
               ],
             ),
           ),
-
-          // SizedBox(),
-
           Expanded(
-            child: widgetTile(passiveColour),
+            child: widgetTile(colour: passiveColour),
           ),
-
           Expanded(
             child: Row(
               children: [
                 Expanded(
-                  child: widgetTile(passiveColour),
+                  child: widgetTile(colour: passiveColour),
                 ),
                 Expanded(
-                  child: widgetTile(passiveColour),
+                  child: widgetTile(
+                    colour: passiveColour,
+                  ),
                 ),
               ],
             ),

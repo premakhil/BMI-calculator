@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 
 class widgetTile extends StatelessWidget {
-  widgetTile(this.colour);
+  widgetTile({required this.colour, this.cardChild});
 
   final Color colour;
+  final cardChild;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +13,12 @@ class widgetTile extends StatelessWidget {
       decoration: BoxDecoration(
         color: colour,
         borderRadius: BorderRadius.circular(10),
+
+        // border: Border.all(
+        //   width: 8,
+        // ),
       ),
+      child: cardChild,
     );
   }
 }
