@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:healthier/resultPage.dart';
 import 'widgetTile.dart';
 import 'iconData.dart';
 import 'RoundedButton.dart';
@@ -243,7 +244,9 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
-              Navigator.pushNamed(context, '/resultPage');
+              // Navigator.pushNamed(context, '/resultPage');
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => resultPage()));
             },
             child: Container(
               margin: EdgeInsets.only(top: 10.0),
