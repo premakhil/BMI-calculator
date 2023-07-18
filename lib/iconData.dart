@@ -22,7 +22,10 @@ class iconData extends StatelessWidget {
         ),
         Text(
           label,
-          style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15.0),
+          style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 15.0,
+              color: Color(0xFF6F6D82)),
         )
       ],
     );
