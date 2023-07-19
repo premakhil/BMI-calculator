@@ -4,6 +4,7 @@ import 'package:healthier/resultPage.dart';
 import 'widgetTile.dart';
 import 'iconData.dart';
 import 'RoundedButton.dart';
+import 'calculateResult.dart';
 
 const bottomHeight = 60.0;
 const passiveColour = Color(0xFF25284A);
@@ -32,7 +33,6 @@ class _InputPageState extends State<InputPage> {
       appBar: PreferredSize(
         preferredSize: Size.fromHeight(80.0),
         child: AppBar(
-          // backgroundColor: Color(0xFF0A0E21),
           title: Padding(
             padding: const EdgeInsets.only(top: 20.0),
             child: Text(
@@ -184,7 +184,6 @@ class _InputPageState extends State<InputPage> {
                               )
                             ],
                           )
-                          // RoundedButton(),
                         ],
                       )),
                 ),
@@ -234,7 +233,6 @@ class _InputPageState extends State<InputPage> {
                                 })
                           ],
                         )
-                        // RoundedButton(),
                       ],
                     ),
                   ),
@@ -244,9 +242,54 @@ class _InputPageState extends State<InputPage> {
           ),
           GestureDetector(
             onTap: () {
-              // Navigator.pushNamed(context, '/resultPage');
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => resultPage()));
+              if (selectedGender != null) {
+                calculateResult Result =
+                    calculateResult(height: height, weight: weight);
+                String bmi;
+                String category;
+                String remark;
+
+                bmi = Result.calculateBMI();
+                category = Result.getCategory();
+                remark = Result.getRemark();
+
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => resultPage(
+                              remark: remark,
+                              category: category,
+                              bmi: bmi,
+                            )));
+              } else {
+                showDialog(
+                  context: context,
+                  builder: (ctx) => AlertDialog(
+                    backgroundColor: Colors.white,
+                    title: Text(
+                      "Missing Input.",
+                      style: TextStyle(color: Colors.black),
+                    ),
+                    content: Text("Please select a gender.",
+                        style: TextStyle(color: Colors.black)),
+                    actions: <Widget>[
+                      TextButton(
+                        style: ButtonStyle(
+                          overlayColor: MaterialStateProperty.all(Colors.white),
+                        ),
+                        onPressed: () {
+                          Navigator.of(ctx).pop();
+                        },
+                        child: Container(
+                          color: Colors.white,
+                          padding: const EdgeInsets.all(14),
+                          child: const Text("OK"),
+                        ),
+                      ),
+                    ],
+                  ),
+                );
+              }
             },
             child: Container(
               margin: EdgeInsets.only(top: 10.0),

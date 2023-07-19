@@ -21,10 +21,6 @@ class BMICalculator extends StatelessWidget {
       ),
       title: 'Healthier',
       home: InputPage(),
-      // routes: {
-      //   '/inputPage': (context) => InputPage(),
-      //   '/resultPage': (context) => resultPage(),
-      // },
     );
   }
 }

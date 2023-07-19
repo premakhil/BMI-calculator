@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
 class resultPage extends StatelessWidget {
-  // resultPage({required this.remark, required this.result, required this.score});
+  resultPage({required this.remark, required this.category, required this.bmi});
 
-  // final String remark;
-  // final double score;
-  // final String result;
+  final String remark;
+  final String bmi;
+  final String category;
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +23,6 @@ class resultPage extends StatelessWidget {
         ),
       ),
       body: Column(
-        // mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
@@ -41,8 +40,8 @@ class resultPage extends StatelessWidget {
           Expanded(
             flex: 5,
             child: Container(
-              margin: EdgeInsets.only(top: 15.0),
-              width: 350.0,
+              margin: EdgeInsets.only(top: 50.0),
+              width: 320.0,
               decoration: BoxDecoration(
                 color: Color(0xFF25284A),
                 borderRadius: BorderRadius.circular(20.0),
@@ -51,14 +50,22 @@ class resultPage extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   Text(
-                    'OVERWEIGHT',
-                    style:
-                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.w500),
+                    category,
+                    style: TextStyle(
+                        fontSize: 20.0,
+                        fontWeight: FontWeight.w500,
+                        color: category == 'OVERWEIGHT'
+                            ? Colors.red
+                            : category == 'UNDERWEIGHT'
+                                ? Colors.grey
+                                : Colors.green),
                   ),
-                  Text('25',
+                  Text(bmi,
                       style: TextStyle(
-                          fontSize: 120.0, fontWeight: FontWeight.w500)),
-                  Text("Work out more",
+                        fontSize: 90.0,
+                        fontWeight: FontWeight.w500,
+                      )),
+                  Text(remark,
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.w300))
                 ],
@@ -72,7 +79,7 @@ class resultPage extends StatelessWidget {
                 Navigator.pop(context);
               },
               child: Container(
-                margin: EdgeInsets.only(top: 50.0),
+                margin: EdgeInsets.only(top: 100.0),
                 color: Color(0xFFEB1555),
                 width: double.infinity,
                 height: 60.0,
