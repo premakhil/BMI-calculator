@@ -27,6 +27,12 @@ class _InputPageState extends State<InputPage> {
   int weight = 60;
   int age = 20;
 
+  void updateSelectedGender(Gender? newGender) {
+    setState(() {
+      selectedGender = newGender;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -254,13 +260,17 @@ class _InputPageState extends State<InputPage> {
                 remark = Result.getRemark();
 
                 Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => resultPage(
-                              remark: remark,
-                              category: category,
-                              bmi: bmi,
-                            )));
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => resultPage(
+                      remark: remark,
+                      category: category,
+                      bmi: bmi,
+                      selectedGender: selectedGender,
+                      onGenderChanged: updateSelectedGender,
+                    ),
+                  ),
+                );
               } else {
                 showDialog(
                   context: context,

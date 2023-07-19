@@ -1,11 +1,20 @@
 import 'package:flutter/material.dart';
+import 'input_page.dart';
 
 class resultPage extends StatelessWidget {
-  resultPage({required this.remark, required this.category, required this.bmi});
+  resultPage({
+    required this.remark,
+    required this.category,
+    required this.bmi,
+    required this.selectedGender,
+    required this.onGenderChanged,
+  });
 
   final String remark;
   final String bmi;
   final String category;
+  final Gender? selectedGender;
+  final Function(Gender?) onGenderChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -76,6 +85,7 @@ class resultPage extends StatelessWidget {
             flex: 0,
             child: GestureDetector(
               onTap: () {
+                onGenderChanged(null);
                 Navigator.pop(context);
               },
               child: Container(
